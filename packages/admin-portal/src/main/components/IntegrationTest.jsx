@@ -11,6 +11,7 @@ import SiteList from './Sites/SiteList';
 import SiteForm from './Sites/SiteForm';
 import UserForm from './Users/UserForm';
 import UserList from './Users/UserList';
+import InspectionReport from '../../../../inspection-report/src/InspectionReport';
 import { initGoogleApiClient, isSignedIn, debugAuthState } from '../services/auth.service';
 import styled from "styled-components";
 import './IntegrationTest.css';
@@ -194,6 +195,13 @@ const IntegrationTest = () => {
       >
         User List
       </button>
+      <button
+                    onClick={() => setActiveTest('inspection-report')}
+                    className={activeTest === 'inspection-report' ? 'active' : ''}
+                    disabled={!authenticated}
+                >
+                    Inspection Report
+                </button>
       </div>
       <div className="debug-actions" style={{ marginTop: '20px' }}>
         <button 
@@ -425,7 +433,15 @@ case 'user-list':
             </div>
           </div>
         );
-        
+      
+            case 'inspection-report':
+                return (
+                    <div className="test-component inspection-report-test">
+                        <h2>Inspection Report</h2>
+                        <InspectionReport />
+                    </div>
+                );
+  
       default:
         return (
           <div className="test-component">
